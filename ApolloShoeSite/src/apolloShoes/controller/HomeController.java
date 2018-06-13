@@ -95,9 +95,6 @@ public class HomeController {
 		 mav = new ModelAndView("redirect:Customer");
 		}
 		
-		
-		
-		
  	return mav;
 	}
 	
@@ -111,7 +108,7 @@ public class HomeController {
 		mav = new ModelAndView("About");
 		return mav;
 	}
-	@RequestMapping(value ="/modfy", method = RequestMethod.GET)
+	@RequestMapping(value ="/modify", method = RequestMethod.GET)
 	public ModelAndView user_info_modify() {
 		ModelAndView mav = new ModelAndView("CustomerAccountModify");
 		
@@ -119,11 +116,19 @@ public class HomeController {
 	}
 	@RequestMapping(value="/submit-changes", method = RequestMethod.POST)
 	public String user_info_changes(@ModelAttribute Customer customer,
-			@SessionAttribute ("customerkey")Customer ckey) {
-		if(customer.getPassword().equals(ckey.getPassword())) {
+			@SessionAttribute ("customerkey")Customer ckey) throws SQLException {
+		System.out.println("hekki");
+		if(ckey!=null) {
+			
+			customerDAO.updateCustomer(customer);
 			return "redirect:modify";
 		}
-		ckey.setPassword((customer.getPassword()));
+/*		if(customer.getUserName().equals(ckey.getUserName())) {
+			return "redirect:modify";
+		}
+		if(customer.getEmail().equals(ckey.getEmail())) {
+			return "redirect:modify";
+		}*/
 		return "Customer";
 	}
 	
