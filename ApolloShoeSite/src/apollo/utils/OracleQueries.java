@@ -73,4 +73,7 @@ public class OracleQueries {
 	
 	public final static String GETORDERBYID = "SELECT * FROM order_table "
 			+ "WHERE order_id = ?";
+	public static final String UPDATEPASSWORD = "update customer"
+			+ "set passwords = ? "
+			+ "where customer_id = ?";
 }

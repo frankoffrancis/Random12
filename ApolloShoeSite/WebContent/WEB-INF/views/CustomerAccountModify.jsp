@@ -13,18 +13,17 @@
 <%@page import="apollo.dao.CustomerDAO"%>
 <%Customer cus = (Customer)session.getAttribute("customerkey");  %>
 <h1>Change User's Information</h1>
-	<form action="submit_changes" method="POST">
+	<form action="updatePassword" method="POST" >
 		<div class="sub_field">
-			<label>User Name</label> <input type="text" id="user"
-				name="username" value=<%=cus.getUserName() %> />
+			<label>Old Password</label> 
+			<input type="text" id="password" name="password" placeholder="Current Password Here" > 
 		</div>
 		<div class="sub_field">
-			<label>Password</label> <input type="password" id="pass"
-				name="pass" value=<%=cus.getPassword() %> />
-		</div>
-		<div class="sub_field">
-			<label>Email</label> <input type="text" id="email"
-				name="email" value=<%=cus.getEmail() %> />
+			<label>New Password</label> <input type="text" id="newPassword"
+				name="newPassword" placeholder="New Password Here" >
+		</div>		<div class="sub_field">
+			<label>Confirm New Password</label> <input type="confirmNewPass" id="confirmNewPass"
+				name="confirmNewPass" placeholder="Confirm Password Here" >
 		</div>
 		<div class="btn">
 			<input type="submit" name="submit" value="Change Info" />

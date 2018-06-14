@@ -21,6 +21,17 @@ public class Customer {
 	@EmailConstraint
 	private String email;
 	
+	private String newPassword;
+	
+	
+	public String getNewPassword() {
+		return newPassword;
+	}
+
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
+	}
+
 	public Customer() {
 		this.customerID =0;
 		this.userName= "";

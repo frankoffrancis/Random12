@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import apollo.dao.CustomerDAO;
+import apollo.dao.ShoesDAO;
 import apollo.model.Customer;
 import apollo.model.Order;
 import apollo.model.Shoes;
@@ -28,9 +30,10 @@ import apollo.model.Shoes;
 public class HomeController {
 
 	private CustomerDAO customerDAO  = new CustomerDAO();
+	private ShoesDAO shoesDAO = new ShoesDAO();
 	private ModelAndView mav = null;
 	private HttpSession session;
-	private Shoes shoe;
+	private Shoes shoe  = new Shoes();;
 	private Order order;
 	@ModelAttribute("customerkey")
 	public Customer setUpUserForm() {
@@ -89,10 +92,14 @@ public class HomeController {
 
 		
 		customer = customerDAO.login(customer.getEmail(), customer.getPassword());
-		if(!customer.equals(null)) {
+		
+		if(customer !=null) {
 			session = req.getSession();
 			session.setAttribute("customerkey", customer);
 		 mav = new ModelAndView("redirect:Customer");
+		}
+		else {
+			mav = new ModelAndView("Login");
 		}
 		
  	return mav;
@@ -114,22 +121,30 @@ public class HomeController {
 		
 		return mav;
 	}
-	@RequestMapping(value="/submit-changes", method = RequestMethod.POST)
-	public String user_info_changes(@ModelAttribute Customer customer,
-			@SessionAttribute ("customerkey")Customer ckey) throws SQLException {
-		System.out.println("hekki");
-		if(ckey!=null) {
-			
-			customerDAO.updateCustomer(customer);
-			return "redirect:modify";
+	@RequestMapping(value="/updatePassword", method = RequestMethod.POST)
+	public ModelAndView user_info_changes(@ModelAttribute Customer customer,
+			@SessionAttribute ("customerkey")Customer ckey,ModelAndView mav) throws SQLException {
+		System.out.println("Hello");
+		customer.setCustomerID(ckey.getCustomerID());
+		
+		boolean isUpdated = customerDAO.updatePassword(customer);
+		if(isUpdated) {
+			System.out.println("Teststdftdfgfdvfsdvv");
+		mav.addObject("user_details", customerDAO.getCustomerByID(ckey.getCustomerID()));
+		mav.setViewName("CustomerAccountModify");
 		}
-/*		if(customer.getUserName().equals(ckey.getUserName())) {
-			return "redirect:modify";
-		}
-		if(customer.getEmail().equals(ckey.getEmail())) {
-			return "redirect:modify";
-		}*/
-		return "Customer";
+		return mav;
 	}
+
+	@RequestMapping(value= "shoes", method =RequestMethod.POST)
+	public ModelAndView shoesPage(@ModelAttribute Shoes shoes,
+			@SessionAttribute ("customerkey")Shoes ckey
+			) 
+	{
+		
+		
 	
+	}
+
+}
 }

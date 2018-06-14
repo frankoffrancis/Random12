@@ -191,12 +191,31 @@ public class CustomerDAO {
 		
 		return customer;
 	}
-	/*public boolean validateLogin(String email, String password) {
+
+	public boolean updatePassword(Customer customer) {
+		
 		Connection conn = null;
 		PreparedStatement stmt = null;
-		ResultSet result = null;
-		boolean isvalid =false;
+		Boolean isUpdated = false;
+		Customer cus = new Customer();
 		
+		try {
+			conn = OracleConnection.getConnection();
+			stmt = conn.prepareStatement(OracleQueries.UPDATEPASSWORD);
+			cus = this.getCustomerByID(customer.getCustomerID());
+			if(customer.getPassword() == cus.getPassword()) {
+				
+				stmt.setString(1, customer.getNewPassword());
+				stmt.setInt(2, customer.getCustomerID());
+				isUpdated = stmt.executeUpdate()>0;
+			}
+			
+		} catch (ClassNotFoundException | IOException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return isUpdated;
 	}
-	 */
+	 
 }

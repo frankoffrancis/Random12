@@ -11,8 +11,9 @@
 <nav>		
 	<a href ="register"> Register</a>
 	<a href=""> Home</a>
-	<a href="login"> Log in</a>
+	<a href="Customer"> Customer</a>
 	<a href="#"> About Us</a>
+
 </nav>
 <p> May God help us all is what about competitors were saying when we entered the market. </p>
 </body>

@@ -15,7 +15,7 @@
 <h2> Hello <%= customer.getEmail()  %> </h2>
 <nav>
 <a href="about"> About us</a>
-
+<a href="Shoe"> Shoe</a>
 </nav>
 <a href="modify"> Change Account information </a>
 </body>
