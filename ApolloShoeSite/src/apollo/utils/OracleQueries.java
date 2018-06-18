@@ -13,12 +13,13 @@ public class OracleQueries {
 	public final static String UPDATECUSTOMER = "update customer "
 			+ "set user_name = ?, "
 			+ " password = ?, "
-			+ " email = ? ";
+			+ " email = ? "
+			+ "where customer_id=?";
 	public final static String GETCUSTOMERBYID = "select customer.user_name, customer.passwords, customer.email from customer "
 			+ " where customer_id = ? ";
 	
-	public final static String GETALLSHOES = "select shoe_name,  category_name, shoe_size, price, gender "
-			+ "from shoes "
+	public final static String GETALLSHOES = "select shoes.shoe_name,  category_table.category_name, shoes.shoe_size, shoes.price, shoes.gender "
+			+ "from shoes shoes"
 			+ " join category_table on shoes.CATEGORY_ID= category_table.CATEGORY_ID ";
 	
 	

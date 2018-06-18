@@ -16,7 +16,7 @@ public class ShoesDAO {
 
 	
 	public List<Shoes> getAllShoes() throws SQLException{
-		Shoes shoes = new Shoes();
+		
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet result = null;
@@ -28,7 +28,7 @@ public class ShoesDAO {
 			result = stmt.executeQuery();
 			
 			while(result.next()) {
-				
+				Shoes shoes = new Shoes();
 				shoes.setShoeName(result.getString(1));
 				shoes.setCategoryName(result.getString(2));
 				shoes.setShoeSize(result.getInt(3));
@@ -56,11 +56,11 @@ public class ShoesDAO {
 	}
 	
 	public List<Shoes> getAllShoesByCategoryID(int ID) throws SQLException{
-		Shoes shoes = new Shoes();
+		
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet result = null;
-		List<Shoes> listOfShoes = new ArrayList<Shoes>();
+		List<Shoes> listOfShoes = null;
 		
 		try {
 			conn = OracleConnection.getConnection();
@@ -69,7 +69,8 @@ public class ShoesDAO {
 			result = stmt.executeQuery();
 			
 			while(result !=null && result.next()) {
-				
+				Shoes shoes = new Shoes();
+				listOfShoes = new ArrayList<Shoes>();
 				shoes.setShoeName(result.getString(1));
 				shoes.setCategoryName(result.getString(2));
 				shoes.setShoeSize(result.getInt(3));
@@ -97,11 +98,11 @@ public class ShoesDAO {
 			
 	}
 	public List<Shoes> getAllShoesByGender(String gender) throws SQLException{
-		Shoes shoes = new Shoes();
+		
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet result = null;
-		List<Shoes> listOfShoes = new ArrayList<Shoes>();
+		List<Shoes> listOfShoes = null;
 		
 		try {
 			conn = OracleConnection.getConnection();
@@ -110,7 +111,8 @@ public class ShoesDAO {
 			result = stmt.executeQuery();
 			
 			while(result !=null && result.next()) {
-				
+				Shoes shoes = new Shoes();
+				listOfShoes = new ArrayList<Shoes>();
 				shoes.setShoeName(result.getString(1));
 				shoes.setCategoryName(result.getString(2));
 				shoes.setShoeSize(result.getInt(3));

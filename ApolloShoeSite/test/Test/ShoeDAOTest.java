@@ -13,8 +13,8 @@ import apollo.model.Shoes;
 
 public class ShoeDAOTest {
 
-/*	
-	@Test
+
+/*	@Test
 	public void getAllShoesByGenderTest() throws SQLException {
 		ShoesDAO shoesDAO = new ShoesDAO();
 		List<Shoes> listShoes = new ArrayList<Shoes> ();
@@ -24,7 +24,7 @@ public class ShoeDAOTest {
 		System.out.println(s.getShoeName()+" "+ s.getCategoryName()+  " "+s.getShoeSize()+" "+s.getGender());
 	}
 	}
-	
+	*/
 
 		
 	
@@ -41,9 +41,9 @@ public class ShoeDAOTest {
 	}
 	
 
-		
-	*/
-/*	@Test
+/*		
+	
+	@Test
 	public void getALLShoeByPriceRangeTest() throws SQLException {
 		ShoesDAO shoesDAO = new ShoesDAO();
 		Shoes shoes = new Shoes();
@@ -56,7 +56,7 @@ public class ShoeDAOTest {
 		}
 		
 		
-	}*/
+	}
 	@Test
 	public void getALLShoeByID() throws SQLException {
 		ShoesDAO shoesDAO = new ShoesDAO();
@@ -71,6 +71,6 @@ public class ShoeDAOTest {
 		
 		
 		
-	}
+	}*/
 }
 

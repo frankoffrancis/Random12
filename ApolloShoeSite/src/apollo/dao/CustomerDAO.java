@@ -120,7 +120,7 @@ public class CustomerDAO {
 			stmt.setString(1, customer.getUserName());
 			stmt.setString(2, customer.getPassword());
 			stmt.setString(3, customer.getEmail());
-			
+			stmt.setInt(4, customer.getCustomerID());
 			isUpdated = stmt.executeUpdate() >0;
 			
 		} catch (ClassNotFoundException | IOException | SQLException e) {
